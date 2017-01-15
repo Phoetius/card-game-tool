@@ -1,0 +1,108 @@
+<html onmousedown="docmousedown();" onmousemove="docmousemove(event);" onmouseup="docmouseup();">
+<head>
+    
+    <script type="text/javascript" src="card.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    
+    <style>
+        ::-webkit-scrollbar
+        {
+            width: 0px;  /* remove scrollbar space */
+            background: transparent;  /* optional: just make scrollbar invisible */
+        }
+    
+        .card
+        {
+            position:fixed;
+            width:250px;
+            height:350px;
+            background:white;
+            border-radius:20px;
+            animation-name:fadein;
+            animation-duration:2s;
+        }
+        
+        @keyframes fadein{
+            from {background:black;}
+            to {background:white;}
+        }
+        
+        .card:hover
+        {
+            background:rgba(255,255,255,.95);
+        }
+        
+        textarea
+        {
+            width:230px;
+            height:330px;
+            background:none;
+            margin:10px;
+            padding:10px;
+            border-style:solid;
+            border-color:rgba(0,0,0,0);
+            border-width:2px;
+            border-radius:5px;
+            resize:none;
+            outline:none;
+            font-family: 'Roboto Slab', serif;
+        }
+        
+        div.button
+        {
+            width:100px;
+            height:25px;
+            border-width:3px;
+            border-color:red;
+            border-style:solid;
+            border-radius:5px;
+            color:red;
+            text-align:center;
+            animation-name:txtcolor;
+            animation-duration:2s;
+        }
+        
+        @keyframes txtcolor{
+          from {border-color:black; color:black;}
+          to {border-color:red; color:red;}
+        }
+    </style>
+</head>
+
+<body style="background-color:black">
+    <div class="button" onmousedown="cards.push(new Card())">Create Card</div>
+    
+    <script>
+    
+    cards = [];
+    
+    
+    function docmousedown()
+    {
+        for(var _=0; _<=cards.length-1; _++)
+        {
+            cards[_].docmousedown();
+        }
+    }
+    
+    function docmousemove(e)
+    {
+        for(var _=0; _<=cards.length-1; _++)
+        {
+            cards[_].docmousemove(e);
+        }
+    }
+    
+    function docmouseup()
+    {
+        for(var _=0; _<=cards.length-1; _++)
+        {
+            cards[_].docmouseup();
+        }
+    }
+    
+    
+    </script>
+</body>
+</html>
