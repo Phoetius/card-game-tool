@@ -25,8 +25,8 @@
         }
         
         @keyframes fadein{
-            from {background:black;}
-            to {background:white;}
+            from {background:rgba(0,0,0,0)};
+            to {background:white};
         }
         
         .card:hover
@@ -63,9 +63,21 @@
         }
         
         @keyframes fadinbutton{
-          from {stroke:rgb(50,50,50)}
+          from {stroke:rgba(0,0,0,0)}
           to {stroke:white}
         }
+        
+        line
+        {
+            animation-name:fadeinplus;
+            animation-duration:2s;
+        }
+        
+        @keyframes fadeinplus{
+          from {stroke:rgba(0,0,0,0)}
+          to {stroke:white}
+        }
+        
     </style>
 </head>
 
