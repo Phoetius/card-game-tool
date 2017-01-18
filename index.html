@@ -18,7 +18,8 @@
             width:250px;
             height:350px;
             background:white;
-            border-radius:20px;
+            border-radius:15px;
+            box-shadow: 0px 10px 20px rgba(0,0,0,.3);
             animation-name:fadein;
             animation-duration:2s;
         }
@@ -43,35 +44,39 @@
             border-style:solid;
             border-color:rgba(0,0,0,0);
             border-width:2px;
-            border-radius:5px;
+            border-radius:10px;
             resize:none;
             outline:none;
             font-family: 'Roboto Slab', serif;
         }
         
-        div.button
+        .button
         {
-            width:100px;
-            height:25px;
-            border-width:3px;
-            border-color:red;
-            border-style:solid;
-            border-radius:5px;
-            color:red;
-            text-align:center;
-            animation-name:txtcolor;
+            fill:rgba(0,0,0,0);
+            stroke-width:3px;
+            stroke:white;
+            cx:25px;
+            cy:25px;
+            r:20px;
+            animation-name:fadinbutton;
             animation-duration:2s;
         }
         
-        @keyframes txtcolor{
-          from {border-color:black; color:black;}
-          to {border-color:red; color:red;}
+        @keyframes fadinbutton{
+          from {stroke:rgb(50,50,50)}
+          to {stroke:white}
         }
     </style>
 </head>
 
-<body style="background-color:black">
-    <div class="button" onmousedown="cards.push(new Card())">Create Card</div>
+<body style="background-color:rgb(50,50,50)">
+    <svg width="50" height="50">
+        <g>
+            <line stroke="white" stroke-width="2px" x1="25" y1="15" x2="25" y2="35"/>
+            <line stroke="white" stroke-width="2px" x1="15" y1="25" x2="35" y2="25"/>
+            <circle class="button" onmousedown="cards.push(new Card())"/>
+        </g>
+    </svg>
     
     <script>
     
