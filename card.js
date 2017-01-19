@@ -24,7 +24,17 @@ function Card()
         
         this.addmousedown(this.element, this);
         this.adddblclick(this.element, this);
+        this.addkeydown(this.element, this);
     }
+    
+    this.destroy = function()
+	{
+		for(var _=0; _<=cards.length-1; _++)
+		{
+		    this.element.remove();
+			if(cards[_]==this)cards[_] = null;
+		}
+	}
     
     this.addmousedown = function(elem,obj)
     {
@@ -34,6 +44,11 @@ function Card()
     this.adddblclick = function(elem,obj)
     {
         elem.addEventListener("dblclick", function(){obj.carddblclick(event);}, false);
+    }
+    
+    this.addkeydown = function(elem,obj)
+    {
+        elem.addEventListener("keydown", function(){obj.cardkeydown(event);}, false);
     }
     
     this.cardmousedown = function(e)
@@ -53,7 +68,7 @@ function Card()
         {
             if(cards[_]!=this)
             {
-                cards[_].element.style.zIndex = "1";
+                if(cards[_])cards[_].element.style.zIndex = "1";
             }
         }
         this.element.style.zIndex="2";
@@ -66,6 +81,15 @@ function Card()
         this.ta.readOnly = false;
         this.edit = true;
         this.ta.style.borderStyle = "dashed";
+    }
+    
+    this.cardkeydown = function(e)
+    {
+        if(e.keyCode == "8" && this.selected == true)
+        {
+            this.destroy();
+        }
+        
     }
     
     this.docmousedown = function()

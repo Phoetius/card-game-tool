@@ -92,14 +92,15 @@
     
     <script>
     
-    cards = [];
     
+    //To Do use spline to remove null space in array when deleted
+    cards = [];
     
     function docmousedown()
     {
         for(var _=0; _<=cards.length-1; _++)
         {
-            cards[_].docmousedown();
+            if(cards[_])cards[_].docmousedown();
         }
     }
     
@@ -107,7 +108,7 @@
     {
         for(var _=0; _<=cards.length-1; _++)
         {
-            cards[_].docmousemove(e);
+            if(cards[_])cards[_].docmousemove(e);
         }
     }
     
@@ -115,7 +116,7 @@
     {
         for(var _=0; _<=cards.length-1; _++)
         {
-            cards[_].docmouseup();
+            if(cards[_])cards[_].docmouseup();
         }
     }
     
