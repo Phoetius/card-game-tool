@@ -23,7 +23,7 @@ function Card()
         document.body.appendChild(this.element);
         
         this.addmousedown(this.element, this);
-        this.addkeydown(this.element, this);
+        this.adddblclick(this.element, this);
     }
     
     this.addmousedown = function(elem,obj)
@@ -31,9 +31,9 @@ function Card()
         elem.addEventListener("mousedown", function(){obj.cardmousedown(event);}, false);
     }
     
-    this.addkeydown = function(elem,obj)
+    this.adddblclick = function(elem,obj)
     {
-        elem.addEventListener("keydown", function(){obj.cardkeydown(event);}, false);
+        elem.addEventListener("dblclick", function(){obj.carddblclick(event);}, false);
     }
     
     this.cardmousedown = function(e)
@@ -61,15 +61,11 @@ function Card()
         e.stopPropagation();
     }
     
-    this.cardkeydown = function(e)
+    this.carddblclick = function(e)
     {
-        //enter
-        if(e.keyCode=="13")
-        {
-            this.ta.readOnly = false;
-            this.edit = true;
-            this.ta.style.borderStyle = "dashed";
-        }
+        this.ta.readOnly = false;
+        this.edit = true;
+        this.ta.style.borderStyle = "dashed";
     }
     
     this.docmousedown = function()
