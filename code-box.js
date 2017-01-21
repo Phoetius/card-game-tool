@@ -1,6 +1,8 @@
 function CodeBox()
 {
     this.element;
+    this.ctrldown = false;
+    this.enterdown = false;
     
     this.install = function()
     {
@@ -18,11 +20,23 @@ function CodeBox()
         
         this.element.style.zIndex="999999";
         this.addmousedown(this.element, this);
+        this.addkeydown(this.element, this);
+        this.addkeyup(this.element, this);
     }
     
     this.addmousedown = function(elem,obj)
     {
         elem.addEventListener("mousedown", function(){obj.codeboxmousedown(event);}, false);
+    }
+    
+    this.addkeydown = function(elem,obj)
+    {
+        elem.addEventListener("keydown", function(){obj.codeboxkeydown(event);}, false);
+    }
+    
+    this.addkeyup = function(elem,obj)
+    {
+        elem.addEventListener("keyup", function(){obj.codeboxkeyup(event);}, false);
     }
     
     this.codeboxmousedown = function(e)
@@ -40,6 +54,58 @@ function CodeBox()
     {
         this.destroy();
     }
+    
+    // Activates build of cards CTL Enter
+    
+    
+    
+    this.codeboxkeydown = function(e)
+    {
+       
+        
+        if(e.keyCode == "13") this.enterdown = true;
+        if(e.keyCode == "17") this.ctrldown = true;
+        
+        if(this.enterdown == true && this.ctrldown == true)
+        {
+            console.log(this.ta.value)
+            this.buildcards();
+            this.destroy();
+        }
+        
+    }
+    
+    this.codeboxkeyup = function(e)
+    {
+        if(e.keyCode == "13") this.enterdown = false;
+        if(e.keyCode == "17") this.ctrldown = false;
+    }
+    
+    this.buildcode = function()
+    {
+        var code = "";
+        for(var _=0; _<=cards.length-1; _++)
+        {
+            code += cards[_].x.toString() +";"+ cards[_].y.toString() +";";
+            if(cards[_].ta.value=="") code += "null" +";;"
+            else code += cards[_].ta.value +";;";
+        }
+        this.ta.value=code;
+    }
+        
+    this.buildcards = function()
+    {
+        var data = this.ta.value.split(";;");
+        
+        for(_=0; _<=data.length-1; _++)
+        {
+            var cdata = data[_].split(";");
+            
+            cards.push(new Card(cdata[0], cdata[1], cdata[2]));
+        }
+    }
+    
 
     this.install();
+    this.buildcode();
 }

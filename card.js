@@ -1,12 +1,13 @@
-function Card()
+function Card(x, y, content)
 {
     this.element;
     
     this.selected = false;
     this.edit = false;
     this.drag = false;
-    this.x = 50;
-    this.y = 50;
+    this.x = x;
+    this.y = y;
+    this.content = content;
     this.offsetX = 0;
     this.offsetY = 0;
     
@@ -17,6 +18,7 @@ function Card()
         this.element.style = "left:50px; top:60px;";
         
         this.ta = document.createElement("textarea");
+        this.ta.value = this.content;
         this.ta.readOnly = true;
         
         this.element.appendChild(this.ta);
@@ -32,7 +34,7 @@ function Card()
 		for(var _=0; _<=cards.length-1; _++)
 		{
 		    this.element.remove();
-			if(cards[_]==this)cards[_] = null;
+			if(cards[_]==this)cards.splice(_,1);
 		}
 	}
     

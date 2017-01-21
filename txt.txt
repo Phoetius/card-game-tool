@@ -1,0 +1,28 @@
+~Pirate Ship~
+
+Damage : 8
+
+~Pirates~
+
+Pirate 1
+Damage - 5
+
+Pirate 2
+Damage : 8
+Perception : High
+
+Pirate 3
+Damage : 10
+
+
+~Market~
+
+Goods
+
+Ale : 2 Treasures
+
+Canons : 5 Treasures
+
+Fire Canons : 10 Treasure
+
+Health : 1 Treasure
