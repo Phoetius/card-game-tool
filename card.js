@@ -85,7 +85,7 @@ function Card()
     
     this.cardkeydown = function(e)
     {
-        if(e.keyCode == "8" && this.selected == true)
+        if(e.keyCode == "8" && this.selected == true && this.edit == false)
         {
             this.destroy();
         }
