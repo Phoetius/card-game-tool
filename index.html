@@ -2,6 +2,7 @@
 <head>
     
     <script type="text/javascript" src="card.js"></script>
+    <script type="text/javascript" src="code-box.js"></script>
     
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     
@@ -21,8 +22,9 @@
             border-radius:15px;
             box-shadow: 0px 10px 20px rgba(0,0,0,.3);
             animation-name:fadein;
-            animation-duration:2s;
+            animation-duration:.5s;
         }
+        
         
         @keyframes fadein{
             from {background:rgba(0,0,0,0)};
@@ -32,6 +34,24 @@
         .card:hover
         {
             background:rgba(255,255,255,.95);
+        }
+        
+        
+        .codebox
+        {
+            position:fixed;
+            width:510px;
+            height:530px;
+            background:white;
+            border-radius:15px;
+            box-shadow: 0px 10px 20px rgba(0,0,0,.3);
+            animation-name:fadeinbox;
+            animation-duration:.5s;
+        }
+        
+        @keyframes fadeinbox{
+            from {background:rgba(0,0,0,0)};
+            to {background:white};
         }
         
         textarea
@@ -59,7 +79,7 @@
             cy:25px;
             r:20px;
             animation-name:fadinbutton;
-            animation-duration:2s;
+            animation-duration:.5s;
         }
         
         @keyframes fadinbutton{
@@ -70,7 +90,7 @@
         line
         {
             animation-name:fadeinplus;
-            animation-duration:2s;
+            animation-duration:.5s;
         }
         
         @keyframes fadeinplus{
@@ -78,30 +98,63 @@
           to {stroke:white}
         }
         
+        .codebutton
+        {
+            fill:rgba(0,0,0,0);
+            stroke-width:3px;
+            stroke:white;
+            cx:80px;
+            cy:25px;
+            r:20px;
+            animation-name:fadincbutton;
+            animation-duration:.5s;
+        }
+        
+        @keyframes fadincbutton{
+          from {stroke:rgba(0,0,0,0)}
+          to {stroke:white}
+        }
+
+        @keyframes fadinsemicol{
+          from {color:rgba(0,0,0,0)}
+          to {color:white}
+        }
     </style>
 </head>
 
 <body style="background-color:rgb(50,50,50)">
-    <svg width="50" height="50">
+    
+    <a  style="
+            pointer-events:none;
+            position:fixed;
+            left:85px;
+            top:10px;
+            font-family: 'Roboto Slab', serif;
+            font-size:30;
+            color:white;
+            animation-name:fadinsemicol;
+            animation-duration:.5s;">;</a>
+    
+    <svg width="200" height="100">
         <g>
             <line stroke="white" stroke-width="2px" x1="25" y1="15" x2="25" y2="35"/>
             <line stroke="white" stroke-width="2px" x1="15" y1="25" x2="35" y2="25"/>
             <circle class="button" onmousedown="cards.push(new Card())"/>
         </g>
+        
+        <circle class="codebutton" onmousedown="createcodebox(event);" />
     </svg>
     
     <script>
-    
-    
-    //To Do use spline to remove null space in array when deleted
-    cards = [];
-    
+   
     function docmousedown()
     {
         for(var _=0; _<=cards.length-1; _++)
         {
             if(cards[_])cards[_].docmousedown();
         }
+        
+        if(codebox)codebox.docmousedown()
     }
     
     function docmousemove(e)
@@ -120,7 +173,22 @@
         }
     }
     
+    function createcodebox(e)
+    {
+        console.log(codebox)
+        if(!codebox)codebox = new CodeBox();
+        e.stopPropagation();
+    }
     
+    //
+    
+     cards = [];
+     
+     var codebox = null;
+     
+    //To Do
+    //1. use splice  to remove null space in array when deleted
+    //2. Fix depth
     </script>
 </body>
 </html>

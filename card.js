@@ -14,7 +14,7 @@ function Card()
     {
         this.element = document.createElement("div");
         this.element.setAttribute("class", "card");
-        this.element.style = "left:50px; top:50px;";
+        this.element.style = "left:50px; top:60px;";
         
         this.ta = document.createElement("textarea");
         this.ta.readOnly = true;
