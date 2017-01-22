@@ -55,24 +55,17 @@ function CodeBox()
         this.destroy();
     }
     
-    // Activates build of cards CTL Enter
-    
-    
-    
+    // Activates build of cards CTRL Enter   
     this.codeboxkeydown = function(e)
-    {
-       
-        
+    {        
         if(e.keyCode == "13") this.enterdown = true;
         if(e.keyCode == "17") this.ctrldown = true;
         
         if(this.enterdown == true && this.ctrldown == true)
         {
-            console.log(this.ta.value)
             this.buildcards();
             this.destroy();
         }
-        
     }
     
     this.codeboxkeyup = function(e)
@@ -95,13 +88,18 @@ function CodeBox()
         
     this.buildcards = function()
     {
-        var data = this.ta.value.split(";;");
-        
-        for(_=0; _<=data.length-1; _++)
+        if(this.ta.value!="")
         {
-            var cdata = data[_].split(";");
-            
-            cards.push(new Card(cdata[0], cdata[1], cdata[2]));
+            var data = this.ta.value.split(";;");
+            data.pop();
+            console.log(data)
+        
+            for(_=0; _<=data.length-1; _++)
+            {
+                var cdata = data[_].split(";");
+                
+                cards.push(new Card(cdata[0], cdata[1], cdata[2]));
+            }
         }
     }
     

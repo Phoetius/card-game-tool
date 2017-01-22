@@ -141,7 +141,7 @@
         <g>
             <line stroke="white" stroke-width="2px" x1="25" y1="15" x2="25" y2="35"/>
             <line stroke="white" stroke-width="2px" x1="15" y1="25" x2="35" y2="25"/>
-            <circle class="button" onmousedown="cards.push(new Card(50,50,''))"/>
+            <circle class="button" onmousedown="cards.push(new Card(50,70,''))"/>
         </g>
         
         <circle class="codebutton" onmousedown="createcodebox(event);" />
@@ -177,7 +177,6 @@
     
     function createcodebox(e)
     {
-        console.log(codebox)
         if(!codebox)codebox = new CodeBox();
         e.stopPropagation();
     }

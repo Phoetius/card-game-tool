@@ -15,7 +15,7 @@ function Card(x, y, content)
     {
         this.element = document.createElement("div");
         this.element.setAttribute("class", "card");
-        this.element.style = "left:50px; top:60px;";
+        this.element.style = "left:"+this.x+"px; top:"+this.y+"px;";
         
         this.ta = document.createElement("textarea");
         this.ta.value = this.content;
