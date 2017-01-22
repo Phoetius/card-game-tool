@@ -31,9 +31,10 @@ function Card(x, y, content)
     
     this.destroy = function()
 	{
+        this.element.remove();
+        
 		for(var _=0; _<=cards.length-1; _++)
 		{
-		    this.element.remove();
 			if(cards[_]==this)cards.splice(_,1);
 		}
 	}

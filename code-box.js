@@ -90,11 +90,21 @@ function CodeBox()
     {
         if(this.ta.value!="")
         {
+            //Clear cards
+            var cl = cards.length;
+            for(var _=0; _<cl; _++)
+            {
+                cards[0].destroy()
+            }
+
+            cards = [];
+
+            //Import
             var data = this.ta.value.split(";;");
             data.pop();
-            console.log(data)
         
-            for(_=0; _<=data.length-1; _++)
+            //Create cards
+            for(var _=0; _<=data.length-1; _++)
             {
                 var cdata = data[_].split(";");
                 
@@ -102,7 +112,6 @@ function CodeBox()
             }
         }
     }
-    
 
     this.install();
     this.buildcode();
