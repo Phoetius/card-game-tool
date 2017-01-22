@@ -80,7 +80,7 @@ function CodeBox()
         for(var _=0; _<=cards.length-1; _++)
         {
             code += cards[_].x.toString() +";"+ cards[_].y.toString() +";";
-            if(cards[_].ta.value=="") code += "null" +";;"
+            if(cards[_].ta.value=="") code += "NULL" +";;"
             else code += cards[_].ta.value +";;";
         }
         this.ta.value=code;
@@ -108,6 +108,7 @@ function CodeBox()
             {
                 var cdata = data[_].split(";");
                 
+                if(cdata[2]=="NULL")cdata[2] = "";
                 cards.push(new Card(cdata[0], cdata[1], cdata[2]));
             }
         }

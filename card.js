@@ -33,11 +33,19 @@ function Card(x, y, content)
 	{
         this.element.remove();
         
-		for(var _=0; _<=cards.length-1; _++)
-		{
-			if(cards[_]==this)cards.splice(_,1);
-		}
+        cards.splice(this.getindex(),1);
 	}
+
+    this.getindex = function()
+    {
+        var i = null;
+        for(var _=0; _<=cards.length-1; _++)
+        {
+            if(cards[_]==this)i = _;
+        }
+
+        return i;
+    }
     
     this.addmousedown = function(elem,obj)
     {
@@ -67,14 +75,13 @@ function Card(x, y, content)
         }
         
         //Setting Depth
+        cards.push(cards.splice(this.getindex(), 1)[0]);
+
+        //Update depth of all cards
         for(var _=0; _<=cards.length-1; _++)
         {
-            if(cards[_]!=this)
-            {
-                if(cards[_])cards[_].element.style.zIndex = "1";
-            }
+            cards[_].element.style.zIndex = cards[_].getindex();
         }
-        this.element.style.zIndex="2";
         
         e.stopPropagation();
     }
@@ -92,7 +99,6 @@ function Card(x, y, content)
         {
             this.destroy();
         }
-        
     }
     
     this.docmousedown = function()
